@@ -92,8 +92,9 @@ def execute_redeem(condition_id: str, neg_risk: bool) -> bool:
     try:
         log(f"🔄 Executando redeem para {condition_id[:16]}... (negRisk={neg_risk})")
         
-        # Monta comando
+        # Monta comando usando npx para garantir que ts-node seja encontrado
         cmd = [
+            "npx",
             "ts-node",
             REDEEM_SCRIPT_PATH,
             condition_id,
