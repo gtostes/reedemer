@@ -12,9 +12,13 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 from typing import List, Dict, Set
+from pathlib import Path
 
-# Adiciona o py-clob-client ao path
-sys.path.insert(0, '/Users/tostes/Documents/polymarket/py-clob-client')
+# Obtém o diretório do script atual
+SCRIPT_DIR = Path(__file__).parent.absolute()
+
+# Adiciona o py-clob-client ao path (relativo ao workspace)
+sys.path.insert(0, str(SCRIPT_DIR.parent / 'py-clob-client'))
 
 from py_clob_client.client import ClobClient
 from py_clob_client.constants import POLYGON
@@ -23,7 +27,7 @@ load_dotenv()
 
 # Configurações
 POLYMARKET_DATA_API = "https://data-api.polymarket.com"
-REDEEM_SCRIPT_PATH = "/Users/tostes/Documents/polymarket/reedemer/reedem-service/examples/proxyWallet/redeem.ts"
+REDEEM_SCRIPT_PATH = str(SCRIPT_DIR / "reedem-service" / "examples" / "proxyWallet" / "redeem.ts")
 CHECK_INTERVAL = 1  # segundos
 
 # Conjunto para rastrear conditionIds já processados (evita duplicatas)
